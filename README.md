@@ -1,33 +1,39 @@
-# jobfinder-platform
-Job listings and resume platform using PHP and MySQL
-# JobFinder Platform
+## ER-диаграмма
 
-## Project Description
-A web application for finding jobs and creating resumes.
+```mermaid
+erDiagram
+    USERS ||--o{ JOBS : publishes
+    USERS ||--o{ RESUMES : creates
+    USERS ||--o{ APPLICATIONS : submits
+    JOBS ||--o{ APPLICATIONS : receives
 
-## Technologies
-- PHP
-- MySQL
-- HTML
-- CSS
-- JavaScript
+    USERS {
+        int user_id PK
+        string full_name
+        string email
+        string password
+    }
 
-## Main Features
-- User registration and login
-- Browse and search job listings
-- Create and edit resumes
-- Apply for jobs
-- Employers can publish job vacancies
-- Manage job applications
+    JOBS {
+        int job_id PK
+        int employer_id FK
+        string title
+        string company
+        string city
+        decimal salary
+    }
 
-## Database
-Database name: jobfinder_db
+    RESUMES {
+        int resume_id PK
+        int user_id FK
+        string skills
+        string experience
+    }
 
-Tables:
-- users
-- jobs
-- resumes
-- applications
-
-## Project Goal
-To create a platform that connects job seekers and employers.
+    APPLICATIONS {
+        int application_id PK
+        int user_id FK
+        int job_id FK
+        string status
+    }
+```

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFinder — Болашағыңды тап</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="#" class="logo">JOB<span>FINDER</span><b>✳</b></a>
+    <nav>
+        <a href="#jobs">Вакансиялар</a>
+        <a href="#how">Қалай жұмыс істейді?</a>
+        <a href="#resume">Резюме</a>
+        <a href="#contact">Байланыс</a>
+    </nav>
+    <div class="nav-actions">
+        <button class="theme-btn" onclick="toggleTheme()" title="Түсті өзгерту">☼</button>
+        <a class="login-link" href="login.html">Кіру</a>
+        <a class="nav-btn" href="register.html">Тіркелу ↗</a>
+    </div>
+</header>
+
+<main>
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> ЖАҢА МҮМКІНДІКТЕР ОСЫНДА</div>
+        <h1>Келесі деңгейге<br>көтеріл.<br><span>Өз орныңды тап.</span></h1>
+        <p class="hero-text">
+            Өзіңе лайық жұмысты ізде. Армандаған мансабыңа
+            бір қадам жақында.
+        </p>
+
+        <form class="search-panel" onsubmit="searchJobs(event)">
+            <span>⌕</span>
+            <input id="searchInput" placeholder="Мамандық, компания немесе қала..." aria-label="Жұмыс іздеу">
+            <button type="submit">Іздеу ↗</button>
+        </form>
+
+        <div class="hero-meta">
+            <div class="avatar-stack"><i>A</i><i>M</i><i>D</i><i>+</i></div>
+            <p><strong>5 000+</strong><br>жұмыс іздеуші</p>
+            <span class="meta-divider"></span>
+            <p><strong>Күн сайын</strong><br>жаңа вакансиялар</p>
+        </div>
+    </div>
+
+    <div class="hero-art">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="hero-symbol">✳</div>
+        <div class="floating-note note-top">✦ Талант бағаланады</div>
+        <div class="floating-note note-bottom">
+            <span class="note-icon">↗</span>
+            <div><strong>Жаңа мүмкіндік</strong><small>Сені күтіп тұр!</small></div>
+        </div>
+        <div class="art-caption">FIND YOUR<br><span>NEXT MOVE.</span></div>
+    </div>
+</section>
+
+<section class="quick-stats">
+    <div><span>01 /</span><strong>1 200+</strong><p>Вакансия</p></div>
+    <div><span>02 /</span><strong>850+</strong><p>Компания</p></div>
+    <div><span>03 /</span><strong>24/7</strong><p>Іздеу мүмкіндігі</p></div>
+    <div><span>04 /</span><strong>100%</strong><p>Жаңа бастама</p></div>
+</section>
+
+<section class="jobs-section section-wrap" id="jobs">
+    <div class="section-title">
+        <div>
+            <div class="eyebrow">САҒАН АРНАЛҒАН</div>
+            <h2>Мүмкіндіктер <span>әлемі.</span></h2>
+            <p>Қызығушылығыңа сай жұмысты таңда.</p>
+        </div>
+        <div class="saved-counter">♡ Таңдаулы: <strong id="savedCount">0</strong></div>
+    </div>
+
+    <div class="filters">
+        <button class="filter active" data-category="all" onclick="setCategory('all',this)">Барлығы</button>
+        <button class="filter" data-category="IT" onclick="setCategory('IT',this)">⌘ IT</button>
+        <button class="filter" data-category="Дизайн" onclick="setCategory('Дизайн',this)">✳ Дизайн</button>
+        <button class="filter" data-category="Маркетинг" onclick="setCategory('Маркетинг',this)">↗ Маркетинг</button>
+        <button class="filter" data-category="Қаржы" onclick="setCategory('Қаржы',this)">₸ Қаржы</button>
+        <select id="cityFilter" onchange="filterJobs()">
+            <option value="all">Барлық қалалар</option>
+            <option value="Алматы">Алматы</option>
+            <option value="Астана">Астана</option>
+            <option value="Қашықтан">Қашықтан</option>
+        </select>
+    </div>
+
+    <div class="job-grid" id="jobList">
+
+        <article class="job-card" data-category="IT" data-city="Алматы">
+            <div class="card-top"><div class="company-icon purple">⌘</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● ЖАҢА ВАКАНСИЯ</div>
+            <h3>Frontend Developer</h3>
+            <p class="company">Digital Group · Алматы</p>
+            <p class="description">Заманауи веб-интерфейстер құру және дамыту.</p>
+            <div class="chips"><span>HTML/CSS</span><span>JavaScript</span></div>
+            <div class="card-bottom"><div><strong>300 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('Frontend Developer')">Өтінім ↗</button></div>
+        </article>
+
+        <article class="job-card" data-category="Дизайн" data-city="Астана">
+            <div class="card-top"><div class="company-icon pink">✳</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● ТАНЫМАЛ</div>
+            <h3>UI/UX дизайнер</h3>
+            <p class="company">Creative Studio · Астана</p>
+            <p class="description">Қолданушыға ыңғайлы интерфейс пен дизайн жасау.</p>
+            <div class="chips"><span>Figma</span><span>UI/UX</span></div>
+            <div class="card-bottom"><div><strong>350 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('UI/UX дизайнер')">Өтінім ↗</button></div>
+        </article>
+
+        <article class="job-card" data-category="Маркетинг" data-city="Қашықтан">
+            <div class="card-top"><div class="company-icon orange">↗</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● ҚАШЫҚТАН</div>
+            <h3>Digital маркетолог</h3>
+            <p class="company">Media Plus · Қашықтан</p>
+            <p class="description">Әлеуметтік желілер мен жарнаманы дамыту.</p>
+            <div class="chips"><span>SMM</span><span>SEO</span></div>
+            <div class="card-bottom"><div><strong>280 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('Digital маркетолог')">Өтінім ↗</button></div>
+        </article>
+
+        <article class="job-card" data-category="IT" data-city="Астана">
+            <div class="card-top"><div class="company-icon green">⌘</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● БАСТАПҚЫ ДЕҢГЕЙ</div>
+            <h3>Junior Web Developer</h3>
+            <p class="company">Tech Solutions · Астана</p>
+            <p class="description">Веб-жобаларды әзірлеу және командамен жұмыс.</p>
+            <div class="chips"><span>HTML</span><span>CSS</span><span>JS</span></div>
+            <div class="card-bottom"><div><strong>250 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('Junior Web Developer')">Өтінім ↗</button></div>
+        </article>
+
+        <article class="job-card" data-category="Қаржы" data-city="Алматы">
+            <div class="card-top"><div class="company-icon blue">₸</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● ТОЛЫҚ ЖҰМЫС КҮНІ</div>
+            <h3>Қаржы аналитигі</h3>
+            <p class="company">Nova Finance · Алматы</p>
+            <p class="description">Қаржылық деректерді талдау және есеп дайындау.</p>
+            <div class="chips"><span>Excel</span><span>Аналитика</span></div>
+            <div class="card-bottom"><div><strong>320 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('Қаржы аналитигі')">Өтінім ↗</button></div>
+        </article>
+
+        <article class="job-card" data-category="Дизайн" data-city="Қашықтан">
+            <div class="card-top"><div class="company-icon yellow">✎</div><button class="save-btn" onclick="saveJob(this)" aria-label="Таңдаулыға қосу">♡</button></div>
+            <div class="job-label">● ҚАШЫҚТАН</div>
+            <h3>Графикалық дизайнер</h3>
+            <p class="company">Pixel Lab · Қашықтан</p>
+            <p class="description">Брендке арналған визуалды материалдар әзірлеу.</p>
+            <div class="chips"><span>Photoshop</span><span>Figma</span></div>
+            <div class="card-bottom"><div><strong>270 000 ₸</strong><small> / айына</small></div><button class="apply-btn" onclick="applyJob('Графикалық дизайнер')">Өтінім ↗</button></div>
+        </article>
+    </div>
+
+    <p id="resultMessage" class="result-message">6 вакансия көрсетілді</p>
+</section>
+
+<section class="how-section section-wrap" id="how">
+    <div class="eyebrow">ҮШ ҚАРАПАЙЫМ ҚАДАМ</div>
+    <h2>Жұмыс табу — <span>оңай.</span></h2>
+    <div class="steps">
+        <article><span>01</span><div class="step-icon">♙</div><h3>Тіркел</h3><p>Өзің туралы ақпаратты енгізіп, аккаунт жаса.</p></article>
+        <article><span>02</span><div class="step-icon">⌕</div><h3>Таңда</h3><p>Вакансияларды қарап, өзіңе лайық жұмыс тап.</p></article>
+        <article><span>03</span><div class="step-icon">↗</div><h3>Өтінім жібер</h3><p>Байланыс деректеріңді толтырып, өтінім қалдыр.</p></article>
+    </div>
+</section>
+
+<section class="resume-section" id="resume">
+    <div class="resume-copy">
+        <div class="eyebrow">МАНСАБЫҢДЫ БАСТА</div>
+        <h2>Жақсы резюме —<br><span>үлкен мүмкіндік.</span></h2>
+        <p>Өз деректеріңді толтыр. Резюме мәтінін дайындап, көшіріп ала аласың.</p>
+        <ul><li>✓ Аты-жөнің мен мамандығың</li><li>✓ Байланыс ақпаратың</li><li>✓ Дағдыларың мен тәжірибең</li></ul>
+    </div>
+    <form class="resume-form" onsubmit="createResume(event)">
+        <label>Аты-жөнің<input id="resumeName" required placeholder="Мысалы, Айдана Нұрлан"></label>
+        <label>Мамандығың<input id="resumeRole" required placeholder="Frontend Developer"></label>
+        <label>Email<input id="resumeEmail" type="email" required placeholder="email@example.com"></label>
+        <label>Дағдыларың<textarea id="resumeSkills" required placeholder="HTML, CSS, JavaScript..."></textarea></label>
+        <button type="submit" class="primary-btn">Резюме дайындау ↗</button>
+        <div id="resumeOutput" class="resume-output" hidden></div>
+    </form>
+</section>
+
+<section class="contact-section section-wrap" id="contact">
+    <div class="contact-copy">
+        <div class="eyebrow">БІЗБЕН БАЙЛАНЫС</div>
+        <h2>Сұрағың бар ма?<br><span>Бізге жаз.</span></h2>
+        <p>Ұсынысыңды немесе сұрағыңды қалдыр.</p>
+        <div class="contact-detail"><span>✉</span><div><small>EMAIL</small><strong>hello@jobfinder.kz</strong></div></div>
+        <div class="contact-detail"><span>⌖</span><div><small>ОРНАЛАСҚАН ЖЕРІ</small><strong>Қазақстан</strong></div></div>
+    </div>
+    <form class="contact-form" onsubmit="sendMessage(event)">
+        <label>Атың<input id="contactName" required placeholder="Атыңды енгіз"></label>
+        <label>Email<input id="contactEmail" type="email" required placeholder="Email енгіз"></label>
+        <label>Хабарлама<textarea id="contactMessage" required placeholder="Хабарламаңды жаз..."></textarea></label>
+        <button class="primary-btn" type="submit">Хабарламаны дайындау ↗</button>
+        <p id="contactResult" class="form-result"></p>
+    </form>
+</section>
+</main>
+
+<footer>
+    <a href="#" class="logo">JOB<span>FINDER</span><b>✳</b></a>
+    <p>Өз орныңды тап. Болашағыңды құр.</p>
+    <a href="#contact">Бізбен байланыс ↗</a>
+    <small>© 2026 JobFinder · Оқу жобасы</small>
+</footer>
+
+<div id="applyModal" class="modal" hidden>
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeApply()" aria-label="Жабу">×</button>
+        <div class="eyebrow">ӨТІНІМ ҚАЛДЫРУ</div>
+        <h2 id="applyTitle">Вакансияға өтінім</h2>
+        <form onsubmit="submitApplication(event)">
+            <label>Аты-жөнің<input id="applicantName" required placeholder="Атыңды енгіз"></label>
+            <label>Email<input id="applicantEmail" type="email" required placeholder="Email енгіз"></label>
+            <label>Өзің туралы<textarea id="applicantAbout" placeholder="Қысқаша таныстыр..."></textarea></label>
+            <button class="primary-btn" type="submit">Өтінімді дайындау ↗</button>
+            <p id="applyResult" class="form-result"></p>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
